@@ -1,0 +1,116 @@
+server:
+  port: 8080
+  #host: 0.0.0.0
+  shutdown: GRACEFUL
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: demo
+
+spring:
+  application:
+    name: demo
+  profiles:
+    active: "dev"
+  main:
+    banner-mode: "off"
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties.hibernate:
+      types.print.banner: false
+      format_sql: true
+    defer-datasource-initialization: true
+  devtools:
+    add-properties: false
+  sql:
+    init:
+      mode: always
+
+---
+spring:
+  profiles: dev
+
+Spring:
+  datasource:
+    #url: jdbc:h2:mem:demo
+    url: jdbc:h2:file:/Users/alam/Workspace/h2/data/demo
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    maximumPoolSize: 10
+    minimumIdle: 5
+    idleTimeout: 60000
+    maxLifetime: 120000
+    leakDetectionThreshold: 180000
+    poolName: "rore"
+
+application:
+  #custom properties go under the below
+
+---
+spring:
+  profiles: sqa
+
+Spring:
+  datasource:
+    url: jdbc:h2:file:/Users/alam/Workspace/h2/data/demo
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    maximumPoolSize: 10
+    minimumIdle: 5
+    idleTimeout: 60000
+    maxLifetime: 120000
+    leakDetectionThreshold: 180000
+    poolName: "rore"
+
+application:
+  #custom properties go under the below
+
+---
+spring:
+  profiles: uat
+
+Spring:
+  datasource:
+    url: jdbc:h2:file:/Users/alam/Workspace/h2/data/demo
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    maximumPoolSize: 10
+    minimumIdle: 5
+    idleTimeout: 60000
+    maxLifetime: 120000
+    leakDetectionThreshold: 180000
+    poolName: "rore"
+
+application:
+  #custom properties go under the below
+
+---
+spring:
+  profiles: prod
+
+Spring:
+  datasource:
+    url: jdbc:h2:file:/Users/alam/Workspace/h2/data/demo
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    maximumPoolSize: 10
+    minimumIdle: 5
+    idleTimeout: 60000
+    maxLifetime: 120000
+    leakDetectionThreshold: 180000
+    poolName: "rore"
+
+application:
+  #custom properties go under the below
