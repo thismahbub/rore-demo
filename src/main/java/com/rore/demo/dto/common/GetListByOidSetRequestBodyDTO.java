@@ -3,21 +3,18 @@ package com.rore.demo.dto.common;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
-import com.rore.demo.dto.BaseDTO;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.HashMap;
+import java.util.Set;
 
 @Data
-@ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EnergyDTO implements BaseDTO {
+public class GetListByOidSetRequestBodyDTO {
 
-    private String oid;
-    private String name;
-    private String watt;
+    private Set<String> oids;
+    private String strict;
 
     public String toJson(){
         return new Gson().toJson(this);

@@ -15,7 +15,6 @@ public interface CommonConstant {
     String COMMON_ERROR = "Request processing failed. Please try again";
 
     String DATA_NOT_FOUND = "Data not found.";
-    String NO_DUE = "No due found.";
 
     String DEFAULT_PAGE_NUMBER = "0";
     String DEFAULT_PAGE_SIZE = "10";

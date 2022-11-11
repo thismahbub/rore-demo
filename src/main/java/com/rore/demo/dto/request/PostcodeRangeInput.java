@@ -6,9 +6,10 @@ import lombok.Data;
 import java.util.HashMap;
 
 @Data
-public class BillPaymentReport {
+public class PostcodeRangeInput {
 
-    private String logo;
+    private Integer postcodeStart;
+    private Integer postcodeEnd;
 
     public String toJson(){
         return new Gson().toJson(this);

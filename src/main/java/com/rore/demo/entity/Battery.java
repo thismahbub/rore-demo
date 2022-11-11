@@ -11,13 +11,13 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Energy extends BaseEntity{
+public class Battery extends BaseEntity{
 
     @Column(length = 50)
     private String name;
 
     @Column(length = 6)
-    private String postcode;
+    private Integer postcode;
 
     @Column(length = 6)
     private String watt;

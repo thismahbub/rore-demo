@@ -4,7 +4,6 @@ import com.rore.demo.entity.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @NoRepositoryBean
-public interface ServiceRepository<E extends BaseEntity> extends JpaRepository<E, String>, JpaSpecificationExecutor<E> { //JpaSpecificationExecutor for Dynamic DB query
+public interface ServiceRepository<E extends BaseEntity> extends JpaRepository<E, String>{
 
     Optional<E> findByOidAndDeleted(String oid, Boolean deleted);
     List<E> findByOidInAndDeleted(Set<String> oids, Boolean deleted);
