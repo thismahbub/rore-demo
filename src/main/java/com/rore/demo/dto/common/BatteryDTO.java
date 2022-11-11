@@ -18,7 +18,7 @@ public class BatteryDTO implements BaseDTO {
     private String oid;
     private String name;
     private Integer postcode;
-    private String watt;
+    private Integer watt;
 
     public String toJson(){
         return new Gson().toJson(this);

@@ -17,16 +17,14 @@ public interface ServiceRepository<E extends BaseEntity> extends JpaRepository<E
     List<E> findByOidInAndDeleted(Set<String> oids, Boolean deleted);
 
     List<E> findByDeletedOrderByOidAsc(Boolean deleted);
-    List<E> findByActiveAndDeletedOrderByOidAsc(Boolean active,Boolean deleted);
 
-    List<E> findByActiveAndDeleted(Boolean active, Boolean deleted);
+    List<E> findByDeleted(Boolean deleted);
 
     //If Pagination required
     Page<E> findByOidInAndDeleted(Set<String> oids, Boolean deleted, Pageable pageable);
 
     Page<E> findByDeletedOrderByOidAsc(Boolean deleted, Pageable pageable);
-    Page<E> findByActiveAndDeletedOrderByOidAsc(Boolean active,Boolean deleted, Pageable pageable);
 
-    Page<E> findByActiveAndDeleted(Boolean active, Boolean deleted, Pageable pageable);
+    Page<E> findByDeleted(Boolean deleted, Pageable pageable);
 
 }

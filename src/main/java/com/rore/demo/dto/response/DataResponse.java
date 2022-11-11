@@ -16,5 +16,8 @@ public class DataResponse {
 
     private BaseResponse response;
     private List<HashMap<String, Object>> tableData;
+    private float dataCount;
+    private float totalWatt;
+    private float averageWatt;
 
 }

@@ -1,5 +1,6 @@
 package com.rore.demo.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rore.demo.conostant.CommonConstant;
 import com.rore.demo.dto.BaseDTO;
 import com.rore.demo.dto.common.BatteryDTO;
@@ -7,6 +8,7 @@ import com.rore.demo.dto.request.PostcodeRangeInput;
 import com.rore.demo.dto.response.BaseResponse;
 import com.rore.demo.dto.response.DataResponse;
 import com.rore.demo.entity.Battery;
+import com.rore.demo.exception.ApiRequestException;
 import com.rore.demo.repository.BatteryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -36,15 +38,31 @@ public class BatteryService extends BaseService<Battery, BatteryDTO>{
         baseResponse.setResponseCode(CommonConstant.SUCCESS_CODE);
         baseResponse.setResponseType(CommonConstant.SUCCESS);
 
-        List<HashMap<String, Object>> tableData = new ArrayList<>();
+        List<Battery> datas = repository.getBatteryByPostCodeRage(input.getPostcodeStart(),input.getPostcodeEnd());
 
-        List<Battery> datas = repository.findAll();
+        int[] total = {0};
         if (null != datas && datas.size() > 0){
-            datas = repository.findAll();
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<HashMap<String, Object>> tableData = new ArrayList<>();
+            datas.forEach(data->{
+                BatteryDTO dto = new BatteryDTO();
+                dto.setOid(data.getOid().toString());
+                dto.setName(data.getName());
+                dto.setPostcode(data.getPostcode());
+                dto.setWatt(data.getWatt());
+
+                HashMap<String, Object> map = objectMapper.convertValue(dto, HashMap.class);
+                tableData.add(map);
+
+                total[0]=total[0]+dto.getWatt();
+            });
+            response.setTableData(tableData);
+            response.setDataCount(datas.size());
+            response.setTotalWatt(total[0]);
+            float average = total[0]/datas.size();
+            response.setAverageWatt(average);
         }else {
-            baseResponse.setResponseCode(CommonConstant.SUCCESS_CODE);
-            baseResponse.setResponseType(CommonConstant.SUCCESS);
-            baseResponse.setResponseMessage(CommonConstant.DATA_NOT_FOUND);
+            throw new ApiRequestException(CommonConstant.DATA_NOT_FOUND);
         }
 
         response.setResponse(baseResponse);

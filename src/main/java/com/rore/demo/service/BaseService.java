@@ -36,11 +36,6 @@ public abstract class BaseService<E extends BaseEntity, D extends BaseDTO> {
         return convertForRead(repository.findAll());
     }
 
-    public List<D> getActiveList() {
-        //String txt = getDtoClass().getSimpleName();
-        return convertForRead(repository.findByActiveAndDeletedOrderByOidAsc(Boolean.TRUE,Boolean.FALSE));
-    }
-
     public List<D> getListByIdSet(GetListByOidSetRequestBodyDTO requestDTO) {
 
         List<E> eList = repository.findAllById(requestDTO.getOids())

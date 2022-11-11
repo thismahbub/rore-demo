@@ -20,6 +20,6 @@ public class Battery extends BaseEntity{
     private Integer postcode;
 
     @Column(length = 6)
-    private String watt;
+    private Integer watt;
 
 }

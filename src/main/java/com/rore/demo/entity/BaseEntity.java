@@ -43,9 +43,6 @@ public class BaseEntity implements Serializable {
     private Date updatedOn;
 
     //@Column(columnDefinition = "varchar(5) default 'No'")
-    private Boolean active;
-
-    //@Column(columnDefinition = "varchar(5) default 'No'")
     private Boolean deleted;
 
 }
